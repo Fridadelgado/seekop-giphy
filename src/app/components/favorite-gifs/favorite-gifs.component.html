@@ -1,0 +1,16 @@
+<div class="favorite-gifs-container">
+  <h2>Favorite GIFs</h2>
+  <ng-container *ngIf="favoriteImages.length > 0; else noFavorites">
+    <div class="row">
+      <div class="col-md-4" *ngFor="let imageUrl of favoriteImages; let i = index">
+        <div class="card mb-4">
+          <img [src]="imageUrl" class="card-img-top" alt="Favorite GIF">
+          <!-- Puedes agregar más contenido a la tarjeta si lo deseas -->
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #noFavorites>
+    <p>No tienes gifs favoritos aún</p>
+  </ng-template>
+</div>

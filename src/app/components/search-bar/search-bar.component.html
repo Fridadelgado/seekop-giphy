@@ -1,0 +1,36 @@
+<div class="search">
+  <h2 style="font-weight: 600; color: #2C5DA1;">Buscar gif:</h2>
+  <div style="display: flex;">
+    <div class="input-group mb-3 custom-input" style="width: 25%;">
+      <input class="form-control" aria-label="giphyName" aria-describedby="basic-addon1" [(ngModel)]="giphyName">
+    </div>
+    <button type="button" class="btn btn-primary" style="background-color: #2C5DA1; height: 20%;margin-left: 2em;"
+      (click)="getGiphyByName(giphyName)" [disabled]="showSpinner">Buscar</button>
+    <div *ngIf="showSpinner">
+      <!----- <mat-spinner [diameter]="30"></mat-spinner>-->
+    </div>
+  </div>
+</div>
+<div>
+  <div class="gif-container" *ngIf="giphyResponse">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 fade-in" *ngFor="let data of giphyResponse.data">
+          <div class="card mb-4">
+            <img [src]="data.images.original.url" class="card-img-top" alt="Imagen Original">
+            <div class="card-body">
+              <h5 class="card-title">{{ data.title }}</h5>
+              <button class="favorite-button" (click)="toggleFavorite(data.images.original.url)">
+                <i class="fas fa-star" *ngIf="isFavorite(data.images.original.url)" style="color: blue;"></i>
+                <i class="far fa-star" *ngIf="!isFavorite(data.images.original.url)"></i>
+              </button>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  
